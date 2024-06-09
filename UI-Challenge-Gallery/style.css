@@ -1,54 +1,137 @@
+/* For all the display, the screen */
+
 *{
     box-sizing: border-box;
     scroll-behavior: smooth;
+    overflow: hidden;
+    font-stretch: condensed;
     padding: 0;
     margin: 0;
 }
+
+/* For all contents*/
+
 html, body{
     width: 100%;
     height: 100%;
-}
-main{
-    background-color: #000;
     color: #FFFFFF;
-    display: flex;
-    justify-content: center;
+    background-color: #000;
 }
-.first-photo, .second-photo, .third-photo, .forth-photo{
-    position: relative;
-    text-align: center;
-    color: white;
-    border-right: 2px solid #000;
-    border-bottom: none;
-    transition: transform .2s; /* Animation */
+
+/* For the container */
+
+  main { 
+      display: flex;
+      justify-content: center;
+      margin: 0 3%;
+  } 
+
+/* For each division, image and it's details */
+
+  .photo-texts {
+      position: relative;
+      flex: 1;
+      height: 540px;
+      margin: 30px 0;
+      transition: transform 0.3s ease;
   }
-  .first-photo:hover, .second-photo:hover, .third-photo:hover, .forth-photo:hover{
-  transform: scale(1.2);
+
+  /* For each image  */
+
+  .photo-texts img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      object-fit: cover;
+      transition: transform 0.3s ease, filter 0.3s ease;
   }
-  .texts{
-    position: absolute;
-    bottom: 38px;
-    left: 24px;
-    padding: 16px;
-    text-align: start;
-   
+
+  /* For each image's hover CSS  */
+
+  .photo-texts:hover img {
+      transform: scale(1.1);
+      filter: grayscale(100%) blur(5px);
   }
-  .texts p{
+
+  /* For the container of images' details */
+
+  .content-texts {
+      display: flex;
+      justify-content: left;
+      align-items: flex-end;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      box-sizing: border-box;
+      position: absolute;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+  }
+
+/* For details of images */
+
+  .texts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 20px;
+      z-index: 2;
+  }
+
+/* For specific detail of an image: h1, p */
+
+  .texts h1, .texts p {
+      transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+   .photo-texts:hover .texts h1 p {
+      opacity: 1;
+      transform: translateY(0);
+      transform: translateY(-10px);
+      transition: transform 0.3s ease, opacity 0.3s ease; 
+  }
+
+  .texts p {
     text-transform: capitalize;
-    font-family: 'Poppins';
-    padding-top: 16px;
-    font-size: 14px;
-    color: #dad6d6;
+    color: rgb(184, 182, 182);
+    font-family: 'Poppins', sans-serif; 
+    font-size: 12px;
+    line-height: 2;
   }
+
+
   .texts h1{
     text-transform: uppercase;
+    font-size: 28px;
     font-family: din-condensed, sans-serif;
-    font-size: 24px;
-    font-weight: 700;
   }
-  .texts a{
+
+
+  .texts .know-more {
     text-decoration: none;
-    font-family: 'Poppins';
-    color: rgb(13, 202, 231);
+    font-family: 'Poppins', sans-serif; 
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: transform 0.3s ease, opacity 0.3s ease; 
+  }
+
+
+  .photo-texts:hover .texts .know-more {
+      transform: translateY(0); 
+      opacity: 1; 
+  }
+  
+  .photo-texts:hover .know-more{
     font-size: 15px;
+      color: rgb(81, 225, 230);
+      font-family: 'Poppins', sans-serif; 
+  }
+
+/* For responsiveness, media querry */
+
+  @media (max-width: 650px) {
+      .texts {
+          display: none;
+      }
   }
